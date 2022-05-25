@@ -18,17 +18,21 @@ updater = Updater(API_KEY,
                   use_context=True)
 
 print("Passed")
+
+
   
   
 def hi(update: Update, context: CallbackContext):
-    update.message.reply_text(
-        "Hello sir, Welcome to the Bot.Please write\
+    update.message.reply_text("Hello sir, Welcome to the Bot.Please write\
         /help to see the commands available.")
+    user = update.message.from_user
+    print('You talk with user {} and his user ID: {} '.format(user['username'], user['id']))
+    
 
 def start(update: Update, context: CallbackContext):
     
-    kbd_layout = [['Register', 'Status'], ['Option 3', 'Option 4'],
-                       ["Option 5"]]
+    kbd_layout = [['Register', 'Status'], ['Help', 'Sponsor-us'],
+                       ["Contact-us"]]
 
     kbd = ReplyKeyboardMarkup(kbd_layout)
 
@@ -37,11 +41,7 @@ def start(update: Update, context: CallbackContext):
   
 def help(update: Update, context: CallbackContext):
     update.message.reply_text("""Available Commands :-
-    /youtube - To get the youtube URL
-    /linkedin - To get the LinkedIn profile URL
-    /gmail - To get gmail URL
-    /geeks - To get the GeeksforGeeks URL
-    /count - to get layout""")
+    /help -to get help""")
   
   
 def status(update: Update, context: CallbackContext):
@@ -51,15 +51,13 @@ def status(update: Update, context: CallbackContext):
         please come back after some time)")
   
   
-def youtube_url(update: Update, context: CallbackContext):
-    update.message.reply_text("Youtube Link =>\
-    https://www.youtube.com/")
+def sponsor(update: Update, context: CallbackContext):
+    update.message.reply_text("By us a coffe so we can make lot of more activities ")
   
   
-def linkedIn_url(update: Update, context: CallbackContext):
+def contact(update: Update, context: CallbackContext):
     update.message.reply_text(
-        "LinkedIn URL => \
-        https://www.linkedin.com/in/dwaipayan-bandyopadhyay-007a/")
+        "contact the builder for more details")
   
   
 def geeks_url(update: Update, context: CallbackContext):
@@ -121,17 +119,15 @@ def unknown_text(update: Update, context: CallbackContext):
   
   
 updater.dispatcher.add_handler(CommandHandler('start', start))
-updater.dispatcher.add_handler(CommandHandler('youtube', youtube_url))
 updater.dispatcher.add_handler(CommandHandler('help', help))
-updater.dispatcher.add_handler(CommandHandler('linkedin', linkedIn_url))
 updater.dispatcher.add_handler(CommandHandler('geeks', geeks_url))
 updater.dispatcher.add_handler(CommandHandler("hi", hi))
 updater.dispatcher.add_handler(CommandHandler("remove", remove))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Register"), echo))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Status"), status))
-updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Option [3]"), echo))
-updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Option [4]"), echo))
-updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Option [5]"), echo))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Sponsor-us"), sponsor))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Help"), help))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Contact-us"), contact))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"YES"), completed))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"NO"), incomplete))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Thankyou"), tnx))
@@ -142,3 +138,4 @@ updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown_text))
 
   
 updater.start_polling()
+updater.idle()
