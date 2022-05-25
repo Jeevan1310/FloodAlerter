@@ -20,14 +20,14 @@ updater = Updater(API_KEY,
 print("Passed")
   
   
-def count(update: Update, context: CallbackContext):
+def hi(update: Update, context: CallbackContext):
     update.message.reply_text(
         "Hello sir, Welcome to the Bot.Please write\
         /help to see the commands available.")
 
 def start(update: Update, context: CallbackContext):
     
-    kbd_layout = [['Option 1', 'Option 2'], ['Option 3', 'Option 4'],
+    kbd_layout = [['Register', 'Status'], ['Option 3', 'Option 4'],
                        ["Option 5"]]
 
     kbd = ReplyKeyboardMarkup(kbd_layout)
@@ -44,10 +44,11 @@ def help(update: Update, context: CallbackContext):
     /count - to get layout""")
   
   
-def gmail_url(update: Update, context: CallbackContext):
+def status(update: Update, context: CallbackContext):
+    #Check for user if the user is registered for Fsaver
     update.message.reply_text(
-        "Your gmail link here (I am not\
-        giving mine one for security reasons)")
+        "Sorry we cannot get registeration details \
+        please come back after some time)")
   
   
 def youtube_url(update: Update, context: CallbackContext):
@@ -83,7 +84,29 @@ def echo(update: Update, context: CallbackContext):
     """
     # sending the reply message with the selected option
     update.message.reply_text("You just clicked on '%s'" % update.message.text)
-    update.message.reply_text("The option you have selected is for registering flood alert do you want continue if yes type \yes or no \no")
+    update.message.reply_text("The option you have selected is for registering flood alert")
+    kbd_layout = [['YES', 'NO']]
+    kbd = ReplyKeyboardMarkup(kbd_layout)
+    update.message.reply_text(text="Do you want continue ??", reply_markup=kbd)
+    pass
+
+def completed(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        "You simply clicked '%s' As a result you have been succesfully registered for the Flood Alerting Service by Fsaver" % update.message.text
+    )
+    kbd_layout = [['Thankyou']]
+    kbd = ReplyKeyboardMarkup(kbd_layout)
+    update.message.reply_text(text="You have done a good thing", reply_markup=kbd)
+    pass
+def incomplete(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        "Oh Sad you just clicked '%s' Please come back when you ready for the alert service" % update.message.text
+    )
+    pass
+def tnx(update: Update,context: CallbackContext):
+    update.message.reply_text(
+        "Thank you for your wonderful support"
+    )
     pass
   
   
@@ -101,11 +124,17 @@ updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('youtube', youtube_url))
 updater.dispatcher.add_handler(CommandHandler('help', help))
 updater.dispatcher.add_handler(CommandHandler('linkedin', linkedIn_url))
-updater.dispatcher.add_handler(CommandHandler('gmail', gmail_url))
 updater.dispatcher.add_handler(CommandHandler('geeks', geeks_url))
-updater.dispatcher.add_handler(CommandHandler("count", count))
+updater.dispatcher.add_handler(CommandHandler("hi", hi))
 updater.dispatcher.add_handler(CommandHandler("remove", remove))
-updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Option [0-9]"), echo))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Register"), echo))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Status"), status))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Option [3]"), echo))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Option [4]"), echo))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Option [5]"), echo))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"YES"), completed))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"NO"), incomplete))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Thankyou"), tnx))
 updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
 updater.dispatcher.add_handler(MessageHandler(
     Filters.command, unknown))  
