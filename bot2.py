@@ -40,7 +40,10 @@ def start(update: Update, context: CallbackContext):
   
 def help(update: Update, context: CallbackContext):
     update.message.reply_text("""Available Commands :-
-    /help -to get help""")
+    /hi -to get greet
+    /start -to start the bot
+    /remove -to remove inline keyboard
+    /motivate -to get a slice of motivation""")
   
   
 def status(update: Update, context: CallbackContext):
@@ -59,9 +62,9 @@ def contact(update: Update, context: CallbackContext):
         "contact the builder for more details")
   
   
-def geeks_url(update: Update, context: CallbackContext):
+def motivate(update: Update, context: CallbackContext):
     update.message.reply_text(
-        "GeeksforGeeks URL => https://www.geeksforgeeks.org/")
+        "You are the awesome person in the universe")
 
 
 def remove(update: Update, context: CallbackContext):
@@ -104,11 +107,25 @@ def incomplete(update: Update, context: CallbackContext):
     update.message.reply_text(
         "Oh Sad you just clicked '%s' Please come back when you ready for the alert service" % update.message.text
     )
+    kbd_layout = [['Register', 'Status'], ['Help', 'Sponsor-us'],
+                       ["Contact-us"]]
+
+    kbd = ReplyKeyboardMarkup(kbd_layout)
+
+    
+    update.message.reply_text(text="Select Options", reply_markup=kbd)
     pass
 def tnx(update: Update,context: CallbackContext):
     update.message.reply_text(
         "Thank you for your wonderful support"
     )
+    kbd_layout = [['Register', 'Status'], ['Help', 'Sponsor-us'],
+                       ["Contact-us"]]
+
+    kbd = ReplyKeyboardMarkup(kbd_layout)
+
+    
+    update.message.reply_text(text="What would you like to explore now", reply_markup=kbd)
     pass
   
   
@@ -124,7 +141,7 @@ def unknown_text(update: Update, context: CallbackContext):
   
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('help', help))
-updater.dispatcher.add_handler(CommandHandler('geeks', geeks_url))
+updater.dispatcher.add_handler(CommandHandler('motivate', motivate))
 updater.dispatcher.add_handler(CommandHandler("hi", hi))
 updater.dispatcher.add_handler(CommandHandler("remove", remove))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Register"), echo))
