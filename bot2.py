@@ -8,6 +8,7 @@ from telegram.replykeyboardmarkup import ReplyKeyboardMarkup
 from telegram.replykeyboardremove import ReplyKeyboardRemove
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
+from telegram import Location
 load_dotenv()
 
 
@@ -25,8 +26,6 @@ print("Passed")
 def hi(update: Update, context: CallbackContext):
     update.message.reply_text("Hello sir, Welcome to the Bot.Please write\
         /help to see the commands available.")
-    user = update.message.from_user
-    print('You talk with user {} and his user ID: {} '.format(user['username'], user['id']))
     
 
 def start(update: Update, context: CallbackContext):
@@ -88,10 +87,15 @@ def echo(update: Update, context: CallbackContext):
     update.message.reply_text(text="Do you want continue ??", reply_markup=kbd)
     pass
 
+
+
+
 def completed(update: Update, context: CallbackContext):
     update.message.reply_text(
         "You simply clicked '%s' As a result you have been succesfully registered for the Flood Alerting Service by Fsaver" % update.message.text
     )
+    user = update.message.from_user
+    print('You talk with user {} and his user ID: {} '.format(user['username'], user['id']))
     kbd_layout = [['Thankyou']]
     kbd = ReplyKeyboardMarkup(kbd_layout)
     update.message.reply_text(text="You have done a good thing", reply_markup=kbd)
