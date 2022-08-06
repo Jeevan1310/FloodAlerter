@@ -11,6 +11,3 @@ This bot remind the users regarding the flood.
 Go to telegram and add <-telegram bot name-> and register for the flood alert.
 it will notify you if you are in flood place.
 
-## about the bot
-
-<--Will be continued-->
