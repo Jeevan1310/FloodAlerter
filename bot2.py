@@ -60,16 +60,23 @@ def sponsor(update: Update, context: CallbackContext):
   
 def contact(update: Update, context: CallbackContext):
     update.message.reply_text(
-        "contact the builder for more details")
+        "Do you want to meet my developer use /admin to get the contact details")
   
   
 def motivate(update: Update, context: CallbackContext):
     update.message.reply_text(
         "You are the awesome person in the universe")
+
+
 def me(update: Update, context: CallbackContext):
     user = update.message.from_user
     update.message.reply_text(
         "Hello {} Have a nice day".format(user['username']))
+
+def admin(update: Update, context: CallbackContext):
+    update.message.reply_text("""
+        Jeevan Joseph
+        Instagram - https://""")
 
 
 def remove(update: Update, context: CallbackContext):
@@ -150,6 +157,7 @@ updater.dispatcher.add_handler(CommandHandler('motivate', motivate))
 updater.dispatcher.add_handler(CommandHandler("hi", hi))
 updater.dispatcher.add_handler(CommandHandler("remove", remove))
 updater.dispatcher.add_handler(CommandHandler("me", me))
+updater.dispatcher.add_handler(CommandHandler("admin", admin))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Register"), echo))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Status"), status))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Sponsor-us"), sponsor))
