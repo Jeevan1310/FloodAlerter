@@ -12,13 +12,13 @@ from telegram import Location
 load_dotenv()
 
 
-print('Code running')
+print('Mark 2 is loading load #0073# ')
 
 API_KEY=os.getenv("API_KEY")
 updater = Updater(API_KEY,
                   use_context=True)
 
-print("Passed")
+print("Acess Granted")
 
 
   
@@ -43,7 +43,8 @@ def help(update: Update, context: CallbackContext):
     /hi -to get greet
     /start -to start the bot
     /remove -to remove inline keyboard
-    /motivate -to get a slice of motivation""")
+    /motivate -to get a slice of motivation
+    /me - to get your details""")
   
   
 def status(update: Update, context: CallbackContext):
@@ -59,12 +60,25 @@ def sponsor(update: Update, context: CallbackContext):
   
 def contact(update: Update, context: CallbackContext):
     update.message.reply_text(
-        "contact the builder for more details")
+        "Do you want to meet my developer use /admin to get the contact details")
   
   
 def motivate(update: Update, context: CallbackContext):
     update.message.reply_text(
         "You are the awesome person in the universe")
+
+
+def me(update: Update, context: CallbackContext):
+    user = update.message.from_user
+    update.message.reply_text(
+        "Hello {} Have a nice day".format(user['username']))
+
+def admin(update: Update, context: CallbackContext):
+    update.message.reply_text("""
+        Jeevan Joseph
+        Instagram - https://instagram.com/jeevanjoseph1310
+        Linked In - www.linkedin.com/in/jeevan-joseph-1310
+        Github - https://github.com/Jeevan1310""")
 
 
 def remove(update: Update, context: CallbackContext):
@@ -144,6 +158,8 @@ updater.dispatcher.add_handler(CommandHandler('help', help))
 updater.dispatcher.add_handler(CommandHandler('motivate', motivate))
 updater.dispatcher.add_handler(CommandHandler("hi", hi))
 updater.dispatcher.add_handler(CommandHandler("remove", remove))
+updater.dispatcher.add_handler(CommandHandler("me", me))
+updater.dispatcher.add_handler(CommandHandler("admin", admin))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Register"), echo))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Status"), status))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Sponsor-us"), sponsor))
