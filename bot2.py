@@ -76,7 +76,9 @@ def me(update: Update, context: CallbackContext):
 def admin(update: Update, context: CallbackContext):
     update.message.reply_text("""
         Jeevan Joseph
-        Instagram - https://""")
+        Instagram - https://instagram.com/jeevanjoseph1310
+        Linked In - www.linkedin.com/in/jeevan-joseph-1310
+        Github - https://github.com/Jeevan1310""")
 
 
 def remove(update: Update, context: CallbackContext):
