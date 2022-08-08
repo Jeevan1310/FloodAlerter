@@ -80,6 +80,8 @@ def admin(update: Update, context: CallbackContext):
         Linked In - www.linkedin.com/in/jeevan-joseph-1310
         Github - https://github.com/Jeevan1310""")
 def create(update: Update,context: CallbackContext):
+    update.message.reply_text("""
+        Do you want to create a website""")
 
 
 def remove(update: Update, context: CallbackContext):
