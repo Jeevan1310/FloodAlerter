@@ -14,4 +14,10 @@ it will notify you if you are in flood place.
 ## bot features
 
 - Register
+- Unregister
+
+## Demo Video
+
+<--demo-video-url-->
+
 
