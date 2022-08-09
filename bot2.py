@@ -1,3 +1,4 @@
+from email import message
 from dotenv import load_dotenv
 import os
 from telegram.ext.updater import Updater
@@ -83,7 +84,11 @@ def create(update: Update,context: CallbackContext):
     update.message.reply_text("""
         Do you want to create a website""")
 def add(update: Update, context: CallbackContext):
-    update.message.reply_photo(photo=open('1887.jpg','rb'))
+    update.message.reply_text("Enter the console to view fire")
+    if update.message.text == "1234":
+         update.message.reply_photo(photo=open('1887.jpg','rb'))
+    else:
+        update.message.reply_text("Error")
 
 
 def remove(update: Update, context: CallbackContext):
