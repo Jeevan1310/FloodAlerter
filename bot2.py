@@ -83,7 +83,7 @@ def create(update: Update,context: CallbackContext):
     update.message.reply_text("""
         Do you want to create a website""")
 def add(update: Update, context: CallbackContext):
-    update.message.reply_photo('1887.jpg')
+    update.message.reply_photo(photo=open('1887.jpg','rb'))
 
 
 def remove(update: Update, context: CallbackContext):
