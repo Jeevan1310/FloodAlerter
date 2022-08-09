@@ -1,4 +1,5 @@
 from email import message
+from pickle import TRUE
 from dotenv import load_dotenv
 import os
 from telegram.ext.updater import Updater
@@ -87,13 +88,15 @@ def create(update: Update,context: CallbackContext):
         Do you want to create a website""")
 
 
-def validate(update: Update,context: CallbackContext,user_input):
-    update.message.text.reply_photo(photo=open('1887.jpg','rb'))
+def validate(update,context,user_input=True,acess_key=True):
+    key=update.message.text.reply_photo(photo=open(user_input,acess_key))
+    return key
 
 def add(update: Update, context: CallbackContext):
     update.message.reply_text("Enter the image name  to view file")
     user_input= update.message.text
-    update.message.reply_photo(validate(user_input))
+    acess_key='rb'
+    update.message.reply_photo(validate(user_input,acess_key))
     
 
 def remove(update: Update, context: CallbackContext):
