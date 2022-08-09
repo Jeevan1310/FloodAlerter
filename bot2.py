@@ -80,16 +80,21 @@ def admin(update: Update, context: CallbackContext):
         Instagram - https://instagram.com/jeevanjoseph1310
         Linked In - www.linkedin.com/in/jeevan-joseph-1310
         Github - https://github.com/Jeevan1310""")
+
+
 def create(update: Update,context: CallbackContext):
     update.message.reply_text("""
         Do you want to create a website""")
-def add(update: Update, context: CallbackContext):
-    update.message.reply_text("Enter the console to view fire")
-    if update.message.text == "1234":
-         update.message.reply_photo(photo=open('1887.jpg','rb'))
-    else:
-        update.message.reply_text("Error")
 
+
+def validate(update: Update,context: CallbackContext,user_input):
+    update.message.text.reply_photo(photo=open('1887.jpg','rb'))
+
+def add(update: Update, context: CallbackContext):
+    update.message.reply_text("Enter the image name  to view file")
+    user_input= update.message.text
+    update.message.reply_photo(validate(user_input))
+    
 
 def remove(update: Update, context: CallbackContext):
     """
@@ -172,6 +177,7 @@ updater.dispatcher.add_handler(CommandHandler("me", me))
 updater.dispatcher.add_handler(CommandHandler("admin", admin))
 updater.dispatcher.add_handler(CommandHandler("create", create))
 updater.dispatcher.add_handler(CommandHandler("add", add))
+updater.dispatcher.add_handler(CommandHandler("validate", validate))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Register"), echo))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Status"), status))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Sponsor-us"), sponsor))
