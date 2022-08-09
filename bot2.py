@@ -82,6 +82,8 @@ def admin(update: Update, context: CallbackContext):
 def create(update: Update,context: CallbackContext):
     update.message.reply_text("""
         Do you want to create a website""")
+def add(update: Update, context: CallbackContext):
+    update.message.reply_photo('1887.jpg')
 
 
 def remove(update: Update, context: CallbackContext):
@@ -164,6 +166,7 @@ updater.dispatcher.add_handler(CommandHandler("remove", remove))
 updater.dispatcher.add_handler(CommandHandler("me", me))
 updater.dispatcher.add_handler(CommandHandler("admin", admin))
 updater.dispatcher.add_handler(CommandHandler("create", create))
+updater.dispatcher.add_handler(CommandHandler("add", add))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Register"), echo))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Status"), status))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Sponsor-us"), sponsor))
