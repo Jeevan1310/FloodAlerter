@@ -11,6 +11,7 @@ from telegram.replykeyboardremove import ReplyKeyboardRemove
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 from telegram import Location
+from alert import alert_system
 load_dotenv()
 
 
@@ -74,6 +75,7 @@ def me(update: Update, context: CallbackContext):
     user = update.message.from_user
     update.message.reply_text(
         "Hello {} Have a nice day".format(user['username']))
+    alert_system()
 
 def admin(update: Update, context: CallbackContext):
     update.message.reply_text("""
