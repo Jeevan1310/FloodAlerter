@@ -11,7 +11,7 @@ from telegram.replykeyboardremove import ReplyKeyboardRemove
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 from telegram import Location
-from alert import alert_system
+from alert import *
 load_dotenv()
 
 
