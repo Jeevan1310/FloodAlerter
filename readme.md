@@ -24,5 +24,7 @@ it will notify you if you are in flood place.
 
 > Jeevan Joseph
 > BCA student
+> Chief Technical officer 
+
 
 
