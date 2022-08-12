@@ -6,3 +6,6 @@ def alert_system():
     
 def jack():
     print("Info accesed")
+
+def kream():
+    print("added")
