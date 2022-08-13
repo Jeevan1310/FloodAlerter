@@ -104,6 +104,10 @@ def chart2(update: Update,context: CallbackContext):
     update.message.reply_text("""
         Hello code is ----""")
 
+def chart3(update: Update,context: CallbackContext):
+    update.message.reply_text("""
+        Hello code is ----""")
+
 
 
 def add(update: Update, context: CallbackContext):
@@ -197,7 +201,7 @@ updater.dispatcher.add_handler(CommandHandler("add", add))
 updater.dispatcher.add_handler(CommandHandler("validate", validate))
 updater.dispatcher.add_handler(CommandHandler("maru", maru))
 updater.dispatcher.add_handler(CommandHandler("chart1", chart1))
-updater.dispatcher.add_handler(CommandHandler("chart2", chart1))
+updater.dispatcher.add_handler(CommandHandler("chart2", chart2))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Register"), echo))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Status"), status))
 updater.dispatcher.add_handler(MessageHandler(Filters.regex(r"Sponsor-us"), sponsor))
