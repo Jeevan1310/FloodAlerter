@@ -96,6 +96,9 @@ def validate(update,context,user_input=True,acess_key=True):
 def maru(update: Update,context: CallbackContext):
     update.message.reply_text("""
         Do you want to create a website""")
+def chart1(update: Update,context: CallbackContext):
+    update.message.reply_text("""
+        Hello code is ----""")
 
 
 
