@@ -100,6 +100,10 @@ def chart1(update: Update,context: CallbackContext):
     update.message.reply_text("""
         Hello code is ----""")
 
+def chart2(update: Update,context: CallbackContext):
+    update.message.reply_text("""
+        Hello code is ----""")
+
 
 
 def add(update: Update, context: CallbackContext):
